@@ -342,18 +342,18 @@ connection::connection(const std::string&  socket_path) : m_main_socket(i3_conne
 			IPC_JSON_READ(root);
 			std::string  change = root["change"].asString();
 			if (change == "focus") {
-				ev.type = WorkspaceEventType::FOCUS;
-			} else if (change == "init") {
-				ev.type = WorkspaceEventType::INIT;
-			} else if (change == "empty") {
-				ev.type = WorkspaceEventType::EMPTY;
-			} else if (change == "urgent") {
-				ev.type = WorkspaceEventType::URGENT;
-			} else if (change == "rename") {
-				ev.type = WorkspaceEventType::RENAME;
-			} else if (change == "reload") {
-				ev.type = WorkspaceEventType::RELOAD;
-			} else if (change == "restored") {
+                ev.type = WorkspaceEventType::FOCUS;
+            } else if (change == "initialized") {
+                ev.type = WorkspaceEventType::INIT;
+            } else if (change == "empty") {
+                ev.type = WorkspaceEventType::EMPTY;
+            } else if (change == "urgent") {
+                ev.type = WorkspaceEventType::URGENT;
+            } else if (change == "rename") {
+                ev.type = WorkspaceEventType::RENAME;
+            } else if (change == "reload") {
+                ev.type = WorkspaceEventType::RELOAD;
+            } else if (change == "restored") {
 				ev.type = WorkspaceEventType::RESTORED;
 			} else {
 				I3IPC_WARN("Unknown workspace event type " << change)
