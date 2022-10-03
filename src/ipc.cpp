@@ -95,6 +95,11 @@ static std::shared_ptr<container_t>  parse_container_from_json(const Json::Value
 	container->geometry = parse_rect_from_json(o["geometry"]);
 	container->urgent = o["urgent"].asBool();
 	container->focused = o["focused"].asBool();
+    
+    container->marks.resize(o["marks"].size());
+    for (const auto & mark : o["marks"]) {
+        container->marks.push_back(mark.asString());
+    }
 
 	container->border = BorderStyle::UNKNOWN;
 	std::string  border = o["border"].asString();

@@ -200,6 +200,7 @@ struct container_t {
 	rect_t  geometry; ///< The original geometry the window specified when i3 mapped it. Used when switching a window to floating mode, for example
 	bool  urgent;
 	bool  focused;
+    std::vector<std::string> marks;
 	std::optional<std::string> workspace;
 
 	window_properties_t  window_properties; /// X11 window properties
