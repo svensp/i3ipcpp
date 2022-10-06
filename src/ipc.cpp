@@ -207,6 +207,7 @@ static std::shared_ptr<output_t>  parse_output_from_json(const Json::Value&  val
 	Json::Value  active = value["active"];
 	Json::Value primary = value["primary"];
     Json::Value focused = value["focused"];
+    Json::Value scale = value["scale"];
     Json::Value current_workspace = value["current_workspace"];
 	Json::Value  rect = value["rect"];
 
@@ -215,6 +216,7 @@ static std::shared_ptr<output_t>  parse_output_from_json(const Json::Value&  val
 	p->active = active.asBool();
     p->primary = primary.asBool();
     p->focused = focused.asBool();
+    p->scale = scale.asFloat();
     p->current_workspace = (current_workspace.isNull() ? std::string() : current_workspace.asString());
 	p->rect = parse_rect_from_json(rect);
 	return p;

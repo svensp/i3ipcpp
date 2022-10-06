@@ -58,6 +58,7 @@ struct output_t {
     bool primary; ///< Is the output the primary output
     bool focused;  ///< Is the output currently focused
     std::string current_workspace; ///< Name of current workspace
+    float scale; ///< Scale of the output
     rect_t rect; ///< Size of the output
 };
 
