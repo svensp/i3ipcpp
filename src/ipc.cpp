@@ -95,7 +95,7 @@ static std::shared_ptr<container_t>  parse_container_from_json(const Json::Value
 	container->geometry = parse_rect_from_json(o["geometry"]);
 	container->urgent = o["urgent"].asBool();
 	container->focused = o["focused"].asBool();
-    
+
     container->marks.resize(o["marks"].size());
     for (const auto & mark : o["marks"]) {
         container->marks.push_back(mark.asString());
@@ -144,7 +144,7 @@ static std::shared_ptr<container_t>  parse_container_from_json(const Json::Value
 			// Just collect what we can
 			continue;
 		}
-		
+
 		container->map[member] = value;
 	}
 
@@ -154,9 +154,9 @@ static std::shared_ptr<container_t>  parse_container_from_json(const Json::Value
 		// Inherit workspace if any
 		container->workspace = workspace_name;
 	}
-	
 
-	Json::Value  nodes = o["nodes"];
+
+    Json::Value  nodes = o["nodes"];
 	if (!nodes.isNull()) {
 		IPC_JSON_ASSERT_TYPE_ARRAY(nodes, "nodes")
 		for (Json::ArrayIndex  i = 0; i < nodes.size(); i++) {
@@ -204,6 +204,9 @@ static std::shared_ptr<output_t>  parse_output_from_json(const Json::Value&  val
 	if (value.isNull())
 		return nullptr;
 	Json::Value  name = value["name"];
+    Json::Value make = value["make"];
+    Json::Value model = value["model"];
+    Json::Value serial = value["serial"];
 	Json::Value  active = value["active"];
 	Json::Value primary = value["primary"];
     Json::Value focused = value["focused"];
@@ -213,6 +216,9 @@ static std::shared_ptr<output_t>  parse_output_from_json(const Json::Value&  val
 
 	auto  p{std::make_shared<output_t>()};
 	p->name = name.asString();
+    p->make = make.asString();
+    p->model = model.asString();
+    p->serial = serial.asString();
 	p->active = active.asBool();
     p->primary = primary.asBool();
     p->focused = focused.asBool();

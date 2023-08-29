@@ -58,6 +58,9 @@ struct output_t {
     bool primary; ///< Is the output the primary output
     bool focused;  ///< Is the output currently focused
     std::string current_workspace; ///< Name of current workspace
+    std::string make; ///< Manufacturer
+    std::string model; ///< Model name
+    std::string serial; ///< Model Serial
     float scale; ///< Scale of the output
     rect_t rect; ///< Size of the output
 };
@@ -328,7 +331,7 @@ public:
 
 	/**
 	 * Subscribe on an events of i3
-	 * 
+	 *
 	 * If connection isn't handling events at the moment, event numer will be added to subscription list.
 	 * Else will also send subscripe request to i3
 	 *
@@ -337,28 +340,28 @@ public:
 	 * connection  conn;
 	 * conn.subscribe(i3ipc::ipc::ET_WORKSPACE | i3ipc::ipc::ET_WINDOW);
 	 * @endcode
-	 * 
+	 *
 	 * @param  events event type (EventType enum)
 	 * @return        Is successfully subscribed. If connection isn't handling events at the moment, then always true.
 	 */
-	bool  subscribe(const int32_t  events);
+    bool subscribe(const int32_t events);
 
-	/**
-	 * Handle an event from i3
-	 * @note Used only in main()
-	 */
-	void  handle_event();
+    /**
+     * Handle an event from i3
+     * @note Used only in main()
+     */
+    void handle_event();
 
-	/**
-	 * Get the fd of the main socket
-	 * @return the file descriptor of the main socket.
-	 */
-	int32_t get_main_socket_fd();
+    /**
+     * Get the fd of the main socket
+     * @return the file descriptor of the main socket.
+     */
+    int32_t get_main_socket_fd();
 
-	/**
-	 * Get the fd of the event socket
-	 * @return the file descriptor of the event socket.
-	 */
+    /**
+     * Get the fd of the event socket
+     * @return the file descriptor of the event socket.
+     */
 	int32_t get_event_socket_fd();
 
 	/**
